@@ -1,0 +1,27 @@
+countries:
+  country_1:
+    name: "Country 1"
+    data_path: "data/raw/SalesCountry1.xlsx"
+    forecast_periods: 12
+    num_lags: 3
+
+  country_2:
+    name: "Country 2"
+    data_path: "data/raw/SalesCountry2.xlsx"
+    forecast_periods: 12
+    num_lags: 3
+
+model_params:
+  country_1:
+    prophet:
+      changepoint_prior_scale: 0.05
+    xgboost:
+      n_estimators: 100
+      max_depth: 3
+  country_2:
+    prophet:
+      changepoint_prior_scale: 0.1  
+    xgboost:
+      n_estimators: 150  
+      max_depth: 4
+model_dir: 'models/saved_models'
