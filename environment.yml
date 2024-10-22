@@ -69,10 +69,12 @@ dependencies:
       - kiwisolver==1.4.7
       - matplotlib==3.7.5
       - pillow==10.4.0
+      - plotly==5.24.1
       - prophet==1.1.6
       - pyparsing==3.1.4
       - pyyaml==6.0.2
       - stanio==0.5.1
+      - tenacity==9.0.0
       - tqdm==4.66.5
       - zipp==3.20.2
 prefix: /home/mry/miniconda3/envs/ml_forecasting_project
