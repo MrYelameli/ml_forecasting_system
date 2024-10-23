@@ -76,10 +76,17 @@ To set up the environment, use the **`environment.yml`** file with Conda:
 conda env create -f environment.yml
 conda activate ml_forecasting_project
 ```
-### 2. Run the Pipeline
+
+### 2. Install the Package
+```bash
+pip install .
+```
+
+### 3. Run the Pipeline
 ```bash
 python main.py
 ```
+
 ## Project Flow
 1. **Data Cleaning**: The raw sales data is cleaned, missing dates are handled, and region-wise/national sales columns are processed.
 2. **National-Level Forecasting**: Prophet forecasts future national sales and saves them in a unique file.

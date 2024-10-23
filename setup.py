@@ -1,9 +1,15 @@
 from setuptools import setup, find_packages
+import os
+
+try:
+    long_description = open('README.md').read()
+except FileNotFoundError:
+    long_description = ''
 
 setup(
     name='ml_forecasting_system',
     version='0.1.0',
-    packages=find_packages(include=['src', 'utils']),  # Find packages in 'src' and 'utils'
+    packages=find_packages(),
     package_dir={
         'src': 'src',
         'utils': 'utils'
@@ -14,7 +20,9 @@ setup(
         'scikit-learn',
         'matplotlib',
         'prophet',
-        'pyyaml'
+        'pyyaml',
+        'xgboost',
+        'plotly'
     ],
     author='Mallikarjun Yelameli',
     author_email='mallikarjun.yelameli@live.com',
@@ -28,4 +36,5 @@ setup(
         'Operating System :: OS Independent',
     ],
     python_requires='>=3.6',
+    license='MIT'
 )
