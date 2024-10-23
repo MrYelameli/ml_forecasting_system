@@ -5,6 +5,7 @@ import pandas as pd
 import os
 from utils.logger import setup_logging
 from datetime import datetime
+from sklearn.metrics import mean_absolute_percentage_error
 
 
 class ProphetModel(BaseModel):
@@ -62,6 +63,14 @@ class ProphetModel(BaseModel):
             self.model = Prophet(**self.config.get('model_params', {}).get('prophet', {}))
             self.model.fit(self.data)
             self.logger.info("Prophet model training complete.")
+
+            # Make predictions on the training data to compute MAPE
+            y_true = self.data['y']  # Actual national sales values
+            y_pred = self.model.predict(self.data)['yhat']  # Predictions from the model
+            
+            # Calculate MAPE
+            train_mape = mean_absolute_percentage_error(y_true, y_pred)
+            self.logger.info(f"Train MAPE for Prophet: {train_mape:.4f}")
 
             # Save the trained Prophet model
             self.save_model('prophet_model.pkl')

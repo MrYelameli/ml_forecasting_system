@@ -5,6 +5,7 @@ import pandas as pd
 import os
 from utils.logger import setup_logging
 from datetime import datetime
+from sklearn.metrics import mean_absolute_percentage_error
 
 class XGBoostModel(BaseModel):
     def __init__(self, config):
@@ -103,6 +104,11 @@ class XGBoostModel(BaseModel):
                 model.fit(X.drop(columns=['date']), y[region])
                 region_models[region] = model
                 self.logger.info(f"XGBoost model trained for {region} in {country}.")
+
+                # Make predictions on the training data to compute MAPE
+                y_pred = model.predict(X.drop(columns=['date']))  # Predictions for training data
+                train_mape = mean_absolute_percentage_error(y[region], y_pred)  # Calculate MAPE
+                self.logger.info(f"Train MAPE for {region} in {country}: {train_mape:.4f}")
             
             self.model = region_models
 
